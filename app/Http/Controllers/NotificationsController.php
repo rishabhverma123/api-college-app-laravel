@@ -141,7 +141,7 @@ class NotificationsController extends Controller
                 'id' => $rawNotif->id,
                 'title' => $rawNotif->title,
                 'message' => $rawNotif->message,
-                ''
+                'payload' => $rawNotif->payload,
             ];
         }
     }
