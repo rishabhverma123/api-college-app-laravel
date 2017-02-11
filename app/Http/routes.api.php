@@ -49,6 +49,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'notifications'], function () {
         Route::post('increment_delivered', 'NotificationsController@postIncrementDeliveredCount');
+        Route::post('get', 'NotificationsController@postGetNotifications');
     });
 
     Route::group(['prefix' => 'questionPapers'], function () {

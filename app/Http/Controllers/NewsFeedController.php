@@ -36,10 +36,13 @@ class NewsFeedController extends Controller
             $newNewsFeed->image = $file_name;
         }
 
+        if ($request->has('url')) {
+            $newNewsFeed->url = $request['url'];
+        }
 
         $newNewsFeed->author = $user->id; //Needs revision perhaps - Shank
         $newNewsFeed->content = $input['content'];
-        $newNewsFeed->save(['timestamps' => false]);
+        $newNewsFeed->save(['timestamps' => false]); //timestamp is set false to avoid overwrite of time when modifying row
 
 
         //creating folder for storing resources related to this news feed

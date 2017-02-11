@@ -123,12 +123,13 @@ class NotificationsController extends Controller
         return \Redirect::route('admin.getAddNotification')->with('response_json',$response_json);
     }
 
-    public function postGetNotificationList(Request $request)
+    public function postGetNotifications(Request $request)
     {
         $limit = 5; //Number of notifications to send
 
         $rawNotifList = \DB::table('notifications')
             ->orderBy('id', 'desc')
+            ->where('sent','=','1')
             ->limit($limit)
             ->get();
 
@@ -142,8 +143,12 @@ class NotificationsController extends Controller
                 'title' => $rawNotif->title,
                 'message' => $rawNotif->message,
                 'payload' => $rawNotif->payload,
+                'timestamp' => $rawNotif->created_at,
             ];
+            $i++;
         }
+
+        return response()->json(['result'=>'success','notifications'=>$notifArray]);
     }
 
 }

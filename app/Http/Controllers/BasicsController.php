@@ -15,12 +15,12 @@ class BasicsController extends Controller
 
     public function update_profile(Request $request)
     {
-//        $validator	=	\Validator::make($request->all(),	[
-//            'rollno'=>'required'
-//        ]);
-//        if	($validator->fails()) {
-//            return response()->json(['result'=>'fail','error'=>$validator->errors()]);
-//        }
+        $validator	=	\Validator::make($request->all(),	[
+            'rollno'=>'required'
+        ]);
+        if	($validator->fails()) {
+            return response()->json(['result'=>'fail','error'=>$validator->errors()]);
+        }
         $user = JWTAuth::toUser($request['token']);
 
         if($request['rollno'] == $user->rollno)
@@ -47,11 +47,11 @@ class BasicsController extends Controller
 
             return response()->json(['result'=>'success']);
         }
-        //else
-            //return response()->json(['result'=>'fail','error'=>'Unauthorized to modify']);
+        else
+            return response()->json(['result'=>'fail','error'=>'Unauthorized to modify']);
     }
 
-    public function get_user_details(Request $request)
+    public function get_user_details(Request $request) //for details of logged in user
     {
         $user = JWTAuth::toUser($request['token']);
 //        $user_details = UserDescription::where('rollno',$user->rollno)->first();
@@ -92,7 +92,7 @@ class BasicsController extends Controller
         $profDetails['batch'] = $rawDescription-> batch;
 
         return response()->json(['result'=>'success','details'=>$profDetails]);
-    }
+    } //for details of any registered user
 
     public function get_search(Request $request)
     {
@@ -106,7 +106,7 @@ class BasicsController extends Controller
         $searchString = strtolower($request['string']);
 
         $results = \DB::table('users_desc')
-            ->select('rollno','name','branch')
+            ->select('rollno','name','branch','batch')
             ->whereRaw('lower(name) like \'%'.$searchString.'%\'')
             ->get();
 
