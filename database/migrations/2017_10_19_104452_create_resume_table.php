@@ -15,11 +15,9 @@ class CreateResumeTable extends Migration
         Schema::create('resume', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('rollno');
-            $table->boolean('type'); //resume(0) or CV(1)
-            $table->string('batch');
-            $table->string('branch');
-            $table->string('filename');
+            $table->string('rollno')->unique();
+            $table->unsignedTinyInteger('branch');
+            $table->unsignedSmallInteger('batch');
             $table->boolean('isVerified')->default(false);
             $table->timestamp('created_at');
         });

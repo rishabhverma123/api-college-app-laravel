@@ -54,6 +54,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'questionPapers'], function () {
         Route::post('get', 'DocumentsController@getQP');
+        Route::post('upload', 'DocumentsController@uploadResume');
     });
 
     Route::group(['prefix' => 'resumes'], function () {

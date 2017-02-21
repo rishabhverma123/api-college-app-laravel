@@ -7,9 +7,12 @@ use App\Library\ConstantPaths;
 use App\Log;
 use App\QuestionPaper;
 use App\Resume;
+use App\UserDescription;
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DocumentsController extends Controller
 {
@@ -50,7 +53,7 @@ class DocumentsController extends Controller
         $name = $request['name'];
         $extension = $request->file('file')->getClientOriginalExtension();
         $filePath = public_path() . ConstantPaths::$PATH_RESUMES;
-        $path = $filePath .$name.".".$extension;
+        $path = $filePath . $name . "." . $extension;
         //die("$path");
         file_put_contents($path, file_get_contents($file));
 
@@ -58,7 +61,7 @@ class DocumentsController extends Controller
         $resume->name = $name;
         $resume->batch = $request['batch'];
         $resume->branch = $request['branch'];
-        $resume->filename = $name.".".$extension;
+        $resume->filename = $name . "." . $extension;
 
         $resume->save();
         return redirect()->route('admin.getAddResume');
@@ -122,6 +125,7 @@ class DocumentsController extends Controller
             ->offset($offset)
             ->limit($limit)
             ->orderBy('created_at', 'desc')
+            ->where('isVerified', true)
             ->get();
 
         $resultArray = null;
@@ -131,9 +135,9 @@ class DocumentsController extends Controller
                 'id' => $resume->id,
                 'name' => $resume->name,
                 'batch' => $resume->batch,
-                'branch' => ConstantParams::$branchNames[$resume->branch],
+                'branch' => $resume->branch,
                 'type' => $resume->type,
-                'url' => ConstantPaths::$PUBLIC_PATH.ConstantPaths::$PATH_RESUMES.$resume->filename,
+                'url' => ConstantPaths::$PUBLIC_PATH . ConstantPaths::$PATH_RESUMES . $resume->filename,
                 'time' => strtotime($resume->created_at) . "000"
             ];
             $i++;
@@ -145,6 +149,58 @@ class DocumentsController extends Controller
 
     public function uploadResume(Request $request)
     {
-        
+        $input = $request->all();
+        $validator = \Validator::make($input, [ //to validate all entries required
+            'pdf' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['result' => 'fail', 'error' => $validator->errors()]);
+        }
+
+        $user = JWTAuth::toUser($request['token']);
+        $userDetails = UserDescription::where('rollno', $user->rollno)->first();
+        $rollno = $userDetails->rollno;
+
+        //getting the file extension
+        $extension = 'pdf';
+
+        $upload_url = public_path() . ConstantPaths::$PATH_RESUMES;
+
+        //file name to store in the database
+        $filename = $rollno . '.' . $extension;
+
+        //file path to upload in the server
+        $file_path = $upload_url . $filename;
+
+        //trying to save the file in the directory
+        try {
+            //saving the file
+            $file = $request->file('pdf');
+            file_put_contents($file_path, file_get_contents($file));
+
+            $resume = Resume::where('rollno', $rollno)->first();
+
+            if ($resume == null) {
+                $resume = new Resume();
+
+                $resume->rollno = $rollno;
+                $resume->name = $userDetails->name;
+                $resume->branch = $userDetails->branch;
+                $resume->batch = $userDetails->batch;
+            }
+
+            $resume->filename = $filename;
+            $resume->isVerified = false;
+            $resume->save();
+
+            $response['result'] = 'success';
+
+            //if some error occurred
+        } catch (Exception $e) {
+            $response['result'] = 'fail';
+        }
+
+        return response()->json($response);
     }
 }
