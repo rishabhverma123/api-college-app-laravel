@@ -10,6 +10,6 @@ class AdminMail extends Model
     public $timestamps=false;
     public function authorDescription()
     {
-        return $this->belongsTo('App\User','author','id');
+        return $this->belongsTo('App\UserDescription','author','rollno');
     }
 }

@@ -119,7 +119,7 @@ class DocumentsController extends Controller
             ->offset($offset)
             ->limit($limit)
             ->orderBy('created_at', 'desc')
-            ->where('isVerified', true)
+           // ->where('isVerified', true)
             ->get();
 
         $resultArray = null;

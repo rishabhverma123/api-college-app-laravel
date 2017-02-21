@@ -22,6 +22,9 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
             Route::post('user_details', 'BasicsController@get_user_details');
             Route::post('get_profile', 'BasicsController@get_profile');
             Route::post('update_profile', 'BasicsController@update_profile');
+            
+            Route::post('mail_to_admin', 'BasicsController@mail_to_admin');
+
         });
 
         Route::group(['prefix' => 'newsFeeds'], function () {

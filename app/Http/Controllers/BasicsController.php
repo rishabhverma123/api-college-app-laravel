@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminMail;
 use App\Library\ConstantPaths;
 use App\UserDescription;
 use Illuminate\Http\Request;
@@ -165,21 +166,24 @@ class BasicsController extends Controller
         return response()->json(['result'=>'success','records'=>$results]);
     }
 
-    public function send_admin_message(Request $request)
+    public function mail_to_admin(Request $request)
     {
         $input = $request->all();
         $validator = \Validator::make($input, [ //to validate all entries required
             'token' => 'required',
-            'message' => 'required'
+            'content' => 'required'
         ]);
-        
         if ($validator->fails()) {
             return response()->json(['result' => 'fail', 'error' => $validator->errors()]);
         }
 
         $user = JWTAuth::toUser($request['token']);
-        $userDetails = UserDescription::where('rollno', $user->rollno)->first();
         
-        $
+        $mail = new AdminMail();
+        $mail->author = $user->rollno;
+        $mail->content = $request['content'];
+
+        $mail->save();
+        return response()->json(['result'=>'success']);
     }
 }

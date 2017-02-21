@@ -1,5 +1,24 @@
 <?php
+use App\AdminMail;
+use Carbon\Carbon;
+
 $admin = Auth::guard('admins')->user();
+
+$adminMailsRaw = AdminMail::orderBy('created_at', 'desc')->take(6)->get();
+
+$adminMails = array();
+$i = 0;
+foreach ($adminMailsRaw as $adminMail) {
+    $adminMails[$i] = [
+            'authorName' => $adminMail->authorDescription->name,
+            'authorBranch' => \App\Library\ConstantParams::$branchNames[$adminMail->authorDescription->branch],
+            'authorBatch' => $adminMail->authorDescription->batch,
+            'content' => $adminMail->content,
+            'timeString' => Carbon::parse($adminMail->created_at)->diffForHumans(),
+    ];
+    $i++;
+}
+
 ?>
         <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +48,8 @@ $admin = Auth::guard('admins')->user();
 
 <body>
 
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color: #dddede;">
+<nav class="navbar navbar-default navbar-static-top" role="navigation"
+     style="margin-bottom: 0;background-color: #dddede;">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -47,24 +67,28 @@ $admin = Auth::guard('admins')->user();
                 <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-messages">
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
+                @foreach($adminMails as $adminMail)
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>{{$adminMail['authorName']}} - {{$adminMail['authorBranch']}}
+                                    ({{$adminMail['authorBatch']}})</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em>{{$adminMail['timeString']}}</em>
                                     </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>Read All Messages</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
+                            </div>
+                            <div>{{$adminMail['content']}}</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                @endforeach
+                {{--<li class="divider"></li>--}}
+                {{--<li>--}}
+                {{--<a class="text-center" href="#">--}}
+                {{--<strong>Read All Messages</strong>--}}
+                {{--<i class="fa fa-angle-right"></i>--}}
+                {{--</a>--}}
+                {{--</li>--}}
             </ul>
             <!-- /.dropdown-messages -->
         </li>
