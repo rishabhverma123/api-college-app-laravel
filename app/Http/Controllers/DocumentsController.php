@@ -73,16 +73,10 @@ class DocumentsController extends Controller
     public function getQP(Request $request)
     {
         $input = $request->all();
-
-        $log = new Log();
-        $log->description = print_r($input, true);
-        $log->save();
-
         $validator = \Validator::make($input, [ //to validate all entries required
             'semester' => 'required',
             'branch' => 'required'
         ]);
-
         if ($validator->fails()) {
             return response()->json(['result' => 'fail', 'error' => $validator->errors()]);
         }
@@ -90,7 +84,8 @@ class DocumentsController extends Controller
         $results = \DB::table('question_papers')
             ->where('semester', '=', $input['semester'])
             ->where('branch', '=', $input['branch'])
-            ->orderBy('id', 'desc')
+            //->where('isValid', '=', true)
+            ->orderBy('subject', 'desc')
             ->get();
 
         $papers = null;
@@ -98,8 +93,7 @@ class DocumentsController extends Controller
         foreach ($results as $result) {
             $papers[$i] = [
                 'id' => $result->id,
-                'pcode' => $result->code,
-                'pname' => ConstantParams::$subjects[$result->code],
+                'subject' => $result->subject,
                 'url' => ConstantPaths::$PUBLIC_PATH . ConstantPaths::$PATH_QUESTION_PAPERS . $result->filename,
                 'type' => $result->type,
                 'contributor' => $result->contributor,
@@ -208,6 +202,7 @@ class DocumentsController extends Controller
     {
         $input = $request->all();
         $validator = \Validator::make($input, [ //to validate all entries required
+            'token' => 'required',
             'pdf' => 'required',
             'semester' => 'required',
             'branch' => 'required',
@@ -238,18 +233,17 @@ class DocumentsController extends Controller
             $file = $request->file('pdf');
             file_put_contents($file_path, file_get_contents($file));
 
-            if ($resume == null) {
-                $resume = new Resume();
+            $qp = new QuestionPaper();
 
-                $resume->rollno = $rollno;
-                $resume->name = $userDetails->name;
-                $resume->branch = $userDetails->branch;
-                $resume->batch = $userDetails->batch;
-            }
+            $qp->contributor = $userDetails->name;
+            $qp->filename = $filename;
+            $qp->subject = $request['subject'];
+            $qp->branch = $request['branch'];
+            $qp->semester = $request['semester'];
 
-            $resume->filename = $filename;
-            $resume->isVerified = false;
-            $resume->save();
+
+            $qp->isVerified = false;
+            $qp->save();
 
             $response['result'] = 'success';
 

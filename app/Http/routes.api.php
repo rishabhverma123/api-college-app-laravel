@@ -54,12 +54,11 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'questionPapers'], function () {
         Route::post('get', 'DocumentsController@getQP');
-        Route::post('upload', 'DocumentsController@uploadResume');
+        Route::post('upload', 'DocumentsController@uploadQP');
     });
 
     Route::group(['prefix' => 'resumes'], function () {
         Route::post('get', 'DocumentsController@getResume');
         Route::post('upload', 'DocumentsController@uploadResume');
-
     });
 });

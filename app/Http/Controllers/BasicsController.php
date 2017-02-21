@@ -164,4 +164,22 @@ class BasicsController extends Controller
 
         return response()->json(['result'=>'success','records'=>$results]);
     }
+
+    public function send_admin_message(Request $request)
+    {
+        $input = $request->all();
+        $validator = \Validator::make($input, [ //to validate all entries required
+            'token' => 'required',
+            'message' => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['result' => 'fail', 'error' => $validator->errors()]);
+        }
+
+        $user = JWTAuth::toUser($request['token']);
+        $userDetails = UserDescription::where('rollno', $user->rollno)->first();
+        
+        $
+    }
 }
