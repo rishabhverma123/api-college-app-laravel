@@ -203,4 +203,61 @@ class DocumentsController extends Controller
 
         return response()->json($response);
     }
+
+    public function uploadQP(Request $request)
+    {
+        $input = $request->all();
+        $validator = \Validator::make($input, [ //to validate all entries required
+            'pdf' => 'required',
+            'semester' => 'required',
+            'branch' => 'required',
+            'subject' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['result' => 'fail', 'error' => $validator->errors()]);
+        }
+
+        $user = JWTAuth::toUser($request['token']);
+        $userDetails = UserDescription::where('rollno', $user->rollno)->first();
+
+        //getting the file extension
+        $extension = 'pdf';
+
+        $upload_url = public_path() . ConstantPaths::$PATH_QUESTION_PAPERS;
+
+        //file name to store in the database
+        $filename = time() . '.' . $extension;
+
+        //file path to upload in the server
+        $file_path = $upload_url . $filename;
+
+        //trying to save the file in the directory
+        try {
+            //saving the file
+            $file = $request->file('pdf');
+            file_put_contents($file_path, file_get_contents($file));
+
+            if ($resume == null) {
+                $resume = new Resume();
+
+                $resume->rollno = $rollno;
+                $resume->name = $userDetails->name;
+                $resume->branch = $userDetails->branch;
+                $resume->batch = $userDetails->batch;
+            }
+
+            $resume->filename = $filename;
+            $resume->isVerified = false;
+            $resume->save();
+
+            $response['result'] = 'success';
+
+            //if some error occurred
+        } catch (Exception $e) {
+            $response['result'] = 'fail';
+        }
+
+        return response()->json($response);
+    }
 }

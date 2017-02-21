@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="536b53e7-4711-493c-816e-c11214bdde01" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2017_10_14_063609_create_question_papers_table.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simplehtmldom/simple_html_dom.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simplehtmldom_1_5 (copy)/app/.svn/all-wcprops" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simplehtmldom_1_5 (copy)/app/.svn/entries" afterPath="" />
@@ -283,12 +282,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simpletest/user_agent.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simpletest/web_tester.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/webassets/simpletest/xml.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/database/migrations/2016_10_14_063609_create_question_papers_table.php" afterPath="$PROJECT_DIR$/database/migrations/backups/2016_10_14_063609_create_question_papers_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/database/migrations/2017_10_14_063609_create_question_papers_table.php" afterPath="$PROJECT_DIR$/database/migrations/2017_10_14_063610_create_question_papers_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.api.php" afterPath="$PROJECT_DIR$/app/Http/routes.api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Library/ConstantParams.php" afterPath="$PROJECT_DIR$/app/Library/ConstantParams.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2017_10_19_104452_create_resume_table.php" afterPath="$PROJECT_DIR$/database/migrations/2017_10_19_104452_create_resume_table.php" />
     </list>
     <ignored path="webapi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -372,18 +367,26 @@
       <file leaf-file-name="DocumentsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="137" column="44" selection-start-line="137" selection-start-column="44" selection-end-line="137" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="250">
+              <caret line="238" column="68" selection-start-line="238" selection-start-column="68" selection-end-line="238" selection-end-column="68" />
+              <folding>
+                <element signature="e#399#508#0#PHP" expanded="false" />
+                <element signature="e#514#1137#0#PHP" expanded="false" />
+                <element signature="e#1143#1249#0#PHP" expanded="false" />
+                <element signature="e#1255#1958#0#PHP" expanded="false" />
+                <element signature="e#2020#3411#0#PHP" expanded="false" />
+                <element signature="e#3417#4554#0#PHP" expanded="false" />
+                <element signature="e#4560#6310#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_10_14_063609_create_question_papers_table.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2017_10_14_063609_create_question_papers_table.php">
+      <file leaf-file-name="2017_10_14_063610_create_question_papers_table.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2017_10_14_063610_create_question_papers_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state relative-caret-position="396">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -437,7 +440,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2016_10_20_111618_create_notifications_table.php" />
         <option value="$PROJECT_DIR$/app/Library/Notifications/Firebase.php" />
         <option value="$PROJECT_DIR$/resources/views/allwebviews/admin/notif/add-2.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
@@ -484,10 +486,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BasicsController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_19_104452_create_resume_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2017_10_19_104452_create_resume_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.api.php" />
         <option value="$PROJECT_DIR$/app/Library/ConstantParams.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_14_063609_create_question_papers_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2017_10_14_063609_create_question_papers_table.php" />
       </list>
     </option>
   </component>
@@ -970,19 +973,19 @@
       <workItem from="1483365923586" duration="661000" />
       <workItem from="1484583453108" duration="6152000" />
       <workItem from="1486816290596" duration="5505000" />
-      <workItem from="1487658587293" duration="5965000" />
+      <workItem from="1487658587293" duration="6273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281675000" />
+    <option name="totallyTimeSpent" value="281983000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="738" extended-state="1" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17223065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17223065" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852808" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1398,14 +1401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="137" column="44" selection-start-line="137" selection-start-column="44" selection-end-line="137" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/backups/2016_10_14_063609_create_question_papers_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1414,10 +1409,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_10_14_063609_create_question_papers_table.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        <state relative-caret-position="250">
+          <caret line="238" column="68" selection-start-line="238" selection-start-column="68" selection-end-line="238" selection-end-column="68" />
+          <folding>
+            <element signature="e#399#508#0#PHP" expanded="false" />
+            <element signature="e#514#1137#0#PHP" expanded="false" />
+            <element signature="e#1143#1249#0#PHP" expanded="false" />
+            <element signature="e#1255#1958#0#PHP" expanded="false" />
+            <element signature="e#2020#3411#0#PHP" expanded="false" />
+            <element signature="e#3417#4554#0#PHP" expanded="false" />
+            <element signature="e#4560#6310#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_10_14_063610_create_question_papers_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
           <folding />
         </state>
       </provider>

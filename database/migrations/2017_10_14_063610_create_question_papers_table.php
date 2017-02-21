@@ -20,6 +20,7 @@ class CreateQuestionPapersTable extends Migration
             $table->string('contributor');
             $table->unsignedTinyInteger('semester');
             $table->unsignedTinyInteger('branch');
+            $table->boolean('isVerified')->default(false);
             $table->timestamp('created_at');
         });
     }
