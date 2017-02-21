@@ -58,5 +58,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'resumes'], function () {
         Route::post('get', 'DocumentsController@getResume');
+        Route::post('upload', 'DocumentsController@uploadResume');
+
     });
 });

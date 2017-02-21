@@ -21,7 +21,7 @@ class CreateUsersDescTable extends Migration
             $table->unsignedSmallInteger('batch');
             $table->string('email');
             $table->string('phone')->nullable();
-
+            //This migration has some missing fields which are in the sql database table
             $table->timestamps();
 
         });

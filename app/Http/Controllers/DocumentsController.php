@@ -142,4 +142,9 @@ class DocumentsController extends Controller
         return response()->json(['result' => 'success', 'resume' => $resultArray]);
 
     }
+
+    public function uploadResume(Request $request)
+    {
+        
+    }
 }
