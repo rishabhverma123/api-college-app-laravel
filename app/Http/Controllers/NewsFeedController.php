@@ -20,7 +20,7 @@ class NewsFeedController extends Controller
         $user = JWTAuth::toUser($request['token']);
         $input = $request->all();
         $validator = \Validator::make($input, [ //to validate all entries required
-            'content' => 'required',
+            
         ]);
 
         if ($validator->fails()) {
