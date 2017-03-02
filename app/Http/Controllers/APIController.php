@@ -58,7 +58,7 @@ class APIController extends Controller
         $user_description->batch = $input['batch'];
 
         if(is_numeric($input['branch']))
-            $user_description->branch = ConstantParams::$branchNames[$input['branch']];
+            $user_description->branch = $input['branch'];
         else
             $user_description->branch = $input['branch'];
 

@@ -32,11 +32,12 @@ class DocumentsController extends Controller
         file_put_contents($path, file_get_contents($file));
 
         $qp = new QuestionPaper();
-        $qp->code = $request['code'];
+        $qp->subject = $request['subject'];
         $qp->semester = $request['semester'];
         $qp->branch = $request['branch'];
         $qp->contributor = $request['contributor'];
         $qp->filename = $name;
+        $qp->isVerified = true;
 
         $qp->save();
 

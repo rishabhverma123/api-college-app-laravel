@@ -17,9 +17,9 @@
             </div>
             <br>
             <div class="form-group">
-                <label class="control-label col-sm-3" for="answer">Subject Code</label>
+                <label class="control-label col-sm-3" for="answer">Subject Name</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="code" name="code" required="">
+                    <input type="text" class="form-control" id="subject" name="subject" required="">
                 </div>
                 <div class="col-sm-2"></div>
             </div>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="answer">Contributor</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="contributor" name="contributor" required="">
+                    <input type="text" class="form-control" id="contributor" name="contributor" required="" value="admin">
                 </div>
                 <div class="col-sm-2"></div>
             </div>
