@@ -125,7 +125,8 @@ class BasicsController extends Controller
 
         $profDetails['rollno'] = $rawDescription->rollno;
         $profDetails['imageUrl'] = file_exists(public_path().ConstantPaths::$PATH_PROFILE_IMAGES.$rawDescription->rollno.".jpg")
-            ? ConstantPaths::$PUBLIC_PATH.ConstantPaths::$PATH_PROFILE_IMAGES.$rawDescription->rollno.".jpg" : '';
+            ? ConstantPaths::$PUBLIC_PATH.ConstantPaths::$PATH_PROFILE_IMAGES.$rawDescription->rollno.".jpg"
+            : ConstantPaths::$PUBLIC_PATH.ConstantPaths::$PATH_PROFILE_IMAGES."default.jpg";
 
         $profDetails['branch'] = $rawDescription->branch ;
         $profDetails['batch'] = $rawDescription-> batch;
